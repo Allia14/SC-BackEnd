@@ -4,8 +4,7 @@ const { Produk, Produsen }= models
 module.exports = {
     produkA: async (req, res) => {
         const data = await Produk.findAll({include : Produsen})
-        // findAll digunakan untuk menemukan semua elemen dalam koleksi yang memenuhi kriteria tertentu.
-        
+                
         res.status(200).json({
             message: "success",
             data: data
@@ -81,3 +80,18 @@ module.exports = {
         }
     }
 }
+
+/* 
+const models = require('../models'); - Mengimpor model Sequelize dari jalur yang ditentukan.
+const { Produk, Produsen } = models; - Merusak objek model yang diimpor untuk mengakses model Produk dan Produsen.
+module.exports = { - Mengekspor metode-metode yang ditentukan sebagai sebuah objek, yang memungkinkan mereka untuk diimpor dan digunakan di modul lain.
+Di dalam setiap metode yang diekspor, terdapat operasi standar untuk berinteraksi dengan database:
+
+produkA mengambil semua data produk, termasuk data produsen terkait, dari basis data dan mengembalikannya dalam respons.
+produkB mengambil satu record produk berdasarkan parameter id yang disediakan dan mengembalikannya dalam respons.
+produkC membuat record produk baru di database dengan parameter nama dan stok yang disediakan, dan mengembalikan record yang dibuat dalam respon.
+produkD menghapus record produk dari database berdasarkan parameter id yang disediakan, dan mengembalikan pesan sukses dalam respon.
+produkE memperbarui record produk yang ada di database dengan parameter nama dan stok yang disediakan, dan mengembalikan record yang diperbarui dalam respons.
+Metode-metode ini menangani potensi kesalahan dengan mengembalikan kode status 500 dan pesan kesalahan ketika terjadi kesalahan.
+
+*/
